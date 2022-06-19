@@ -84,42 +84,81 @@ class _SandwichOrderStatusPageState extends State<SandwichOrderStatusPage> {
   }
 
   Widget _buildOrderWithImage(SandwichOrder order) {
-    List<String> ingredients = <String>[];
+    // List<Widget> ingredients = <Widget>[];
+    // if (order.breadId != null) {
+    //   ingredients.add(_buildImage(order.breadId!));
+    // }
+    // if (order.meatId != null) {
+    //   ingredients.add(_buildImage(order.meatId!));
+    // }
+    // if (order.sauceId != null) {
+    //   ingredients.add(_buildImage(order.sauceId!));
+    // }
+    // if (order.vegetableIds != null) {
+    //   order.vegetableIds!.forEach((element) {
+    //     ingredients.add(_buildImage(element));
+    //   });
+    // }
+    // if (order.cheeseId != null) {
+    //   ingredients.add(_buildImage(order.cheeseId!));
+    // }
+    // List<Row> orderIngredientRows = <Row>[];
+    // int totalRowsExceptLast = ingredients.length ~/ 5;
+    // int elementsInLastRow = ingredients.length % 5;
+    // Row row;
+    // if (totalRowsExceptLast > 0) {
+    //   for (int i = 0; i < totalRowsExceptLast; i++) {
+    //     row = Row(
+    //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+    //       children: ingredients.sublist(i * 5, (i + 1) * 5),
+    //     );
+    //     orderIngredientRows.add(row);
+    //   }
+    // }
+    // if (elementsInLastRow > 0) {
+    //   int start = totalRowsExceptLast * 5;
+    //   int end = start + elementsInLastRow;
+    //   row = Row(
+    //     mainAxisAlignment: MainAxisAlignment.start,
+    //     children: ingredients.sublist(start, end),
+    //   );
+    //   orderIngredientRows.add(row);
+    // }
+
+    // build images in column
+
+    List<Widget> ingredients = <Widget>[];
     if (order.breadId != null) {
-      ingredients.add(order.breadId!);
+      ingredients
+          .add(Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+        _buildImage(order.breadId!),
+      ]));
     }
     if (order.meatId != null) {
-      ingredients.add(order.meatId!);
-    }
-    if (order.sauceId != null) {
-      ingredients.add(order.sauceId!);
+      ingredients
+          .add(Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+        _buildImage(order.meatId!),
+      ]));
     }
     if (order.vegetableIds != null) {
+      List<Widget> vegs = <Widget>[];
       order.vegetableIds!.forEach((element) {
-        ingredients.add(element);
+        vegs.add(_buildImage(element));
       });
+      ingredients.add(Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: vegs));
     }
     if (order.cheeseId != null) {
-      ingredients.add(order.cheeseId!);
+      ingredients
+          .add(Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+        _buildImage(order.cheeseId!),
+      ]));
     }
-    List<Row> orderIngredientRows = <Row>[];
-    int totalRowsExceptLast = ingredients.length ~/ 5;
-    int elementsInLastRow = ingredients.length % 5;
-    Row row;
-    if (totalRowsExceptLast > 0) {
-      for (int i = 0; i < totalRowsExceptLast; i++) {
-        row = Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _buildImage(ingredients[i * 5]),
-            _buildImage(ingredients[i * 5 + 1]),
-            _buildImage(ingredients[i * 5 + 2]),
-            _buildImage(ingredients[i * 5 + 3]),
-            _buildImage(ingredients[i * 5 + 4]),
-          ],
-        );
-        orderIngredientRows.add(row);
-      }
+    if (order.sauceId != null) {
+      ingredients
+          .add(Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+        _buildImage(order.sauceId!),
+      ]));
     }
 
     Widget orderWidget = Card(
@@ -139,7 +178,12 @@ class _SandwichOrderStatusPageState extends State<SandwichOrderStatusPage> {
               order.orderNo.toString() + ' : ' + order.studentName!,
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            Column(children: orderIngredientRows),
+            const Padding(padding: EdgeInsets.only(top: 10)),
+            // Column(children: orderIngredientRows),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: ingredients),
             _buildOrderAction(order),
           ],
         ),
