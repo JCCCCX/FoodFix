@@ -11,8 +11,8 @@ flutter安装成功后，可以使用`flutter doctor`来进行确认。
 #### 3.1. 设置代码文件夹成为一个flutter 工程
 这里可以通过在控制台运行`flutter create .`来将当前文件夹设置为flutter工程，这里会自动生成很多子文件夹用于flutter sdk对本地工程的管理。不过目前有一个限制，直接clone后仓库因为叫做`FoodFix`不满足flutter工程的小写命名规范，因此需要手动将文件夹改成`foodfix`或者其他小写的文件夹名，这里不会影响**git**后续操作。
 #### 3.2 安装工程需要的依赖包
--- 可以在vs code 中安装flutter 和 dart插件，然后右下角就会弹出提示我们下载packages。
--- 也可以在任意terminal中运行`flutter packages get`来下载。
+- 可以在vs code 中安装flutter 和 dart插件，然后右下角就会弹出提示我们下载packages。
+- 也可以在任意terminal中运行`flutter packages get`来下载。
 #### 3.3 尝试运行flutter程序
 - 可以在vs code 中打开main.dart 点击键盘F5运行
 - 也可以在terminal 中运行 `flutter run`来运行
