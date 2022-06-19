@@ -30,6 +30,14 @@ class ServerAgent {
     }
   }
 
+  static Future<bool> finishOrder(postData) async {
+    // update order status to database
+
+    // print sticker ???
+
+    return true;
+  }
+
   static Future<List<SandwichOrder>> getSandwichOrdersToDo(postData) async {
     List<SandwichOrder> todoList = <SandwichOrder>[];
 
@@ -66,7 +74,7 @@ class ServerAgent {
         cheeseId: '3001',
         cheeseName: 'American style',
         vegetableIds: ['4001', '4002', '4003'],
-        vegetableNames: ['onion', 'lettuce', 'tomato'],
+        vegetableNames: ['Onion', 'Lettuce', 'Tomato'],
         sauceId: '5001',
         sauceName: 'BBQ');
     todoList.add(order);
@@ -86,11 +94,11 @@ class ServerAgent {
           '4002',
         ],
         vegetableNames: [
-          'onion',
-          'lettuce',
+          'Onion',
+          'Lettuce',
         ],
         sauceId: '5002',
-        sauceName: 'ketchup');
+        sauceName: 'Ketchup');
     todoList.add(order);
 
     order = SandwichOrder(
@@ -104,7 +112,7 @@ class ServerAgent {
         cheeseId: '3001',
         cheeseName: 'American style',
         vegetableIds: ['4001', '4003'],
-        vegetableNames: ['onion', 'pickle'],
+        vegetableNames: ['Onion', 'Pickle'],
         sauceId: '5001',
         sauceName: 'BBQ');
     todoList.add(order);
@@ -120,7 +128,7 @@ class ServerAgent {
         cheeseId: '3001',
         cheeseName: 'American style',
         vegetableIds: ['4001', '4002', '4003'],
-        vegetableNames: ['onion', 'lettuce', 'tomato'],
+        vegetableNames: ['Onion', 'Lettuce', 'Tomato'],
         sauceId: '5001',
         sauceName: 'BBQ');
     todoList.add(order);
@@ -136,7 +144,7 @@ class ServerAgent {
         cheeseId: '3001',
         cheeseName: 'American style',
         vegetableIds: ['4001', '4002', '4003'],
-        vegetableNames: ['onion', 'lettuce', 'tomato'],
+        vegetableNames: ['Onion', 'Lettuce', 'Tomato'],
         sauceId: '5001',
         sauceName: 'BBQ');
     todoList.add(order);
@@ -152,9 +160,9 @@ class ServerAgent {
         cheeseId: '3001',
         cheeseName: 'American style',
         vegetableIds: ['4002', '4003'],
-        vegetableNames: ['lettuce', 'tomato'],
+        vegetableNames: ['Lettuce', 'Tomato'],
         sauceId: '5002',
-        sauceName: 'ketchup');
+        sauceName: 'Ketchup');
     todoList.add(order);
     return todoList;
   }
