@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodfix/chef/chef_main.dart';
+import 'package:foodfix/student/student_main.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         // primarySwatch: Colors.indigo,
         primarySwatch: Colors.blueGrey,
       ),
-      home: const ChefMainPage(),
+      home: const StudentMainPage(),
     );
   }
 }
