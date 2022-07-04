@@ -9,7 +9,22 @@ class StudentMainPage extends StatefulWidget {
 
 class _StudentMainPageState extends State<StudentMainPage> {
   Widget buildButton(String name) {
-    return TextButton(onPressed: () {}, child: Text(name));
+    return ElevatedButton(
+      onPressed: () {},
+      child: Text(name),
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(Colors.grey[400]),
+        foregroundColor: MaterialStateProperty.all(Colors.black),
+        overlayColor: MaterialStateProperty.all(Colors.deepOrange[400]),
+        elevation: MaterialStateProperty.all(5),
+        fixedSize: MaterialStateProperty.all(const Size(160, 40)),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      ),
+    );
   }
 
   Widget buildRow(String title, List<String> options) {
@@ -22,9 +37,20 @@ class _StudentMainPageState extends State<StudentMainPage> {
       rNum++;
     }
     for (int i = 0; i < options.length; i += 2) {
-      Row r =
-          Row(children: [buildButton(options[i]), buildButton(options[i + 1])]);
-      optionColumns.add(r);
+      if (options.length - i > 1) {
+        Row r = Row(
+          children: [buildButton(options[i]), buildButton(options[i + 1])],
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        );
+        optionColumns.add(r);
+      } else {
+        Row r = Row(
+          children: [buildButton(options[i])],
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        );
+
+        optionColumns.add(r);
+      }
     }
     Widget optionColumnWidget = Column(
       children: [
@@ -39,7 +65,10 @@ class _StudentMainPageState extends State<StudentMainPage> {
 
   @override
   Widget build(BuildContext context) {
-    Widget bodyWidget = buildRow('Bread', ['Grain Wheat', 'Italian']);
+    Widget bodyWidget = Column(children: [
+      buildRow('Bread', ['Grain Wheat', 'Italian', 'White']),
+      buildRow('Meat', ['Ham', 'Turkey', 'Pepperoni', "Chicken"])
+    ]);
 
     return Scaffold(
       appBar: AppBar(
