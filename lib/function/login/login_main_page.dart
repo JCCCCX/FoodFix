@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:foodfix/function/login/forgot_password_page.dart';
+import 'package:foodfix/function/main/main_tab_page.dart';
 import 'package:foodfix/widget/title_textfile_widget.dart';
 
 class LoginMainPage extends StatelessWidget {
@@ -26,12 +28,12 @@ class LoginMainPage extends StatelessWidget {
             ),
             const TitleTextFieldWidget(
               title: "E-mail",
-              textFieldDesc: "Input you email",
+              textFieldDesc: "input  email",
             ),
             const SizedBox(height: 30),
             const TitleTextFieldWidget(
               title: "Password",
-              textFieldDesc: "Input you password",
+              textFieldDesc: "input  password",
             ),
             Container(
               alignment: Alignment.topLeft,
@@ -58,32 +60,47 @@ class LoginMainPage extends StatelessWidget {
               alignment: Alignment.bottomRight,
               padding: const EdgeInsets.only(top: 8),
               margin: const EdgeInsets.symmetric(horizontal: 25),
-              child: Text(
-                "Forgot Password",
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Theme.of(context).primaryColor,
+              child: InkWell(
+                highlightColor: Colors.transparent,
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (c) => ForgotPasswordPage()),
+                  );
+                },
+                child: Text(
+                  "Forgot Password",
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).primaryColor,
+                  ),
                 ),
               ),
             ),
             const SizedBox(height: 15),
-            Container(
-              height: 44,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(16)),
-                color: Theme.of(context).primaryColor,
-              ),
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              width: double.infinity,
-              child: const Text(
-                "Login",
-                style: TextStyle(
-                  height: 1,
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
+            InkWell(
+              highlightColor: Colors.transparent,
+              onTap: () => {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (c) => const MainTabPage()))
+              },
+              child: Container(
+                height: 44,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(16)),
+                  color: Theme.of(context).primaryColor,
+                ),
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                width: double.infinity,
+                child: const Text(
+                  "Continue",
+                  style: TextStyle(
+                    height: 1,
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),
