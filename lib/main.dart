@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
       title: 'FoodFix',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: const Color(0xFFf94d02),
-        primarySwatch: Colors.deepOrange,
+        primaryColor: const Color(0xFF04008d),
+        primarySwatch: Colors.indigo,
       ),
       home: const LoginMainPage(),
     );

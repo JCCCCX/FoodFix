@@ -32,7 +32,7 @@ class _MainTabPageState extends State<MainTabPage> {
         index: currentIndex,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.red,
+        selectedItemColor: Theme.of(context).primaryColor,
         currentIndex: currentIndex,
         unselectedItemColor: Colors.black87,
         showSelectedLabels: false,
