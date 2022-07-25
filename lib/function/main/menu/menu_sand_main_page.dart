@@ -6,12 +6,41 @@ class MenuSandMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemBuilder: (a, b) => SandItemWidget(),
-      separatorBuilder: (a, b) => const Divider(
-        height: 1,
-      ),
-      itemCount: 100,
+    return Column(
+      children: [
+        Expanded(
+          child: Container(
+            margin: const EdgeInsets.only(bottom: 10),
+            child: const SingleChildScrollView(
+              child: SandItemWidget(),
+            ),
+          ),
+        ),
+        InkWell(
+          highlightColor: Colors.transparent,
+          onTap: () => {},
+          child: Container(
+            height: 44,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(16)),
+              color: Theme.of(context).primaryColor,
+            ),
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            width: double.infinity,
+            child: const Text(
+              "Save",
+              style: TextStyle(
+                height: 1,
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 20)
+      ],
     );
   }
 }
@@ -25,21 +54,114 @@ class SandItemWidget extends StatelessWidget {
       padding: const EdgeInsets.only(top: 12),
       margin: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Bread", style: h1),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
+              const Text("Bread", style: h1),
+              Column(
                 children: [
-                  Checkbox(value: true, onChanged: (t) => {}),
-                  Text("1111"),
+                  CheckBoxItem(
+                    title: "Grain Wheat",
+                    isCheck: ValueNotifier(true),
+                  ),
+                  CheckBoxItem(
+                    title: "ABC",
+                    isCheck: ValueNotifier(false),
+                  ),
+                  CheckBoxItem(
+                    title: "BBQ",
+                    isCheck: ValueNotifier(false),
+                  ),
                 ],
               )
             ],
-          )
+          ),
+          const SizedBox(height: 10),
+          const Divider(height: 1),
+          const SizedBox(height: 20),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text("Meat ", style: h1),
+              Column(
+                children: [
+                  CheckBoxItem(
+                    title: "ham",
+                    isCheck: ValueNotifier(true),
+                  ),
+                  CheckBoxItem(
+                    title: "turkey",
+                    isCheck: ValueNotifier(false),
+                  ),
+                ],
+              )
+            ],
+          ),
+          const SizedBox(height: 10),
+          const Divider(height: 1),
+          const SizedBox(height: 20),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text("American Style", style: h1),
+              Column(
+                children: [
+                  CheckBoxItem(
+                    title: "onion",
+                    isCheck: ValueNotifier(true),
+                  ),
+                  CheckBoxItem(
+                    title: "lettuce",
+                    isCheck: ValueNotifier(false),
+                  ),
+                ],
+              )
+            ],
+          ),
         ],
       ),
+    );
+  }
+}
+
+class CheckBoxItem extends StatefulWidget {
+  final String title;
+  final ValueNotifier<bool> isCheck;
+
+  const CheckBoxItem({
+    Key? key,
+    required this.title,
+    required this.isCheck,
+  }) : super(key: key);
+
+  @override
+  State<CheckBoxItem> createState() => _CheckBoxItemState();
+}
+
+class _CheckBoxItemState extends State<CheckBoxItem> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 12),
+          child: SizedBox(
+            child: Text(
+              widget.title,
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+            ),
+            width: 150,
+          ),
+        ),
+        Checkbox(
+            value: widget.isCheck.value,
+            onChanged: (t) {
+              setState(() {
+                widget.isCheck.value = !widget.isCheck.value;
+              });
+            }),
+      ],
     );
   }
 }

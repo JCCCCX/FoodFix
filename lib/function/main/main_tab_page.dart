@@ -3,6 +3,7 @@ import 'package:foodfix/chef/sandwich_order_list.dart';
 import 'package:foodfix/function/global.dart';
 import 'package:foodfix/function/main/menu/menu_main_page.dart';
 import 'package:foodfix/function/main/order/sandwich_order_main_page.dart';
+import 'package:foodfix/function/main/setting/setting_main_page.dart';
 import 'package:foodfix/student/student_main.dart';
 
 import '../../chef/sandwich_order_list_button.dart';
@@ -26,7 +27,8 @@ class _MainTabPageState extends State<MainTabPage> {
           ChefMainPage(),
           SandwichOrderMainPage(),
           MenuMainPage(),
-          SandwichOrderListPage(),
+          SettingMainPage(),
+          // SandwichOrderListPage(),
           // StudentMainPage(),
         ],
         index: currentIndex,
