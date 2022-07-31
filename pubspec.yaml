@@ -29,7 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  fl_chart: ^0.55.0
 
   #日志
   logger: ^1.1.0

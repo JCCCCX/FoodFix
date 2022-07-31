@@ -24,10 +24,10 @@ class MenuPublishMainPage extends StatelessWidget {
               child: const TextField(
                 maxLines: null,
                 decoration: InputDecoration(
-                  hintText: "",
+                  hintText: "input you menu describe",
                   isCollapsed: true,
                   isDense: true,
-                  contentPadding: EdgeInsets.only(left: 12, right: 12, top: 5),
+                  contentPadding: EdgeInsets.only(left: 12, right: 12, top: 10),
                   border: InputBorder.none,
                 ),
               ),
