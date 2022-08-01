@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70cb7deb-030b-44b8-acda-63fe2917ffdd" name="Default Changelist" comment="新增设置界面">
-      <change afterPath="$PROJECT_DIR$/lib/function/detail/order_detail_page.dart" afterDir="false" />
+    <list default="true" id="70cb7deb-030b-44b8-acda-63fe2917ffdd" name="Default Changelist" comment="订单相关">
+      <change afterPath="$PROJECT_DIR$/lib/function/main/setting/add_menu_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis_options.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/analysis_options.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/function/main/menu/menu_publish_main_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/function/main/menu/menu_publish_main_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/function/main/order/making_order_finish_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/function/main/order/making_order_finish_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/function/main/setting/setting_order_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/function/main/setting/setting_order_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/function/main/setting/setting_statistics_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/function/main/setting/setting_statistics_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/function/main/setting/setting_sand_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/function/main/setting/setting_sand_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658766141771</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="订单相关">
+      <created>1659281308375</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1659281308375</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -131,6 +133,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="新增登录页面" />
     <MESSAGE value="新增设置界面" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增设置界面" />
+    <MESSAGE value="订单相关" />
+    <option name="LAST_COMMIT_MESSAGE" value="订单相关" />
   </component>
 </project>
