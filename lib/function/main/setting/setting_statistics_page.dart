@@ -197,7 +197,7 @@ class _ChartPageState extends State<ChartPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     buildBoxTag("Grain", const Color(0xFF4674c8)),
-                    buildBoxTag("Itanlian", const Color(0xFFe97c1e)),
+                    buildBoxTag("Italian", const Color(0xFFe97c1e)),
                     buildBoxTag("ABC", const Color(0xFFa5a5a5)),
                   ],
                 )

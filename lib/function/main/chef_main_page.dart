@@ -10,7 +10,7 @@ class ChefMainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("CHEF-MAIN"),
+        title: const Text("CHEF"),
         automaticallyImplyLeading: false,
         centerTitle: false,
       ),
@@ -23,8 +23,8 @@ class ChefMainPage extends StatelessWidget {
             Text("Today's Menu:", style: Theme.of(context).textTheme.headline6),
             const Padding(padding: EdgeInsets.only(bottom: 30)),
             const KeyAndValueWidget(keyDesc: "Morning", value: "xxxxx"),
-            const KeyAndValueWidget(keyDesc: "Lunch", value: "Roast beef"),
-            const KeyAndValueWidget(keyDesc: "Dinner", value: "Chinese noodle"),
+            const KeyAndValueWidget(keyDesc: "Lunch", value: "xxxxx"),
+            const KeyAndValueWidget(keyDesc: "Dinner", value: "xxxxx"),
             const SizedBox(height: 20),
             const Divider(height: 2),
             const Padding(padding: EdgeInsets.only(bottom: 30)),

@@ -27,13 +27,12 @@ class MakingOrderPage extends StatelessWidget {
                     MakingKeyAndValue(keyDesc: "sauce", valueDesc: "BBQ"),
                     MakingKeyAndValue(
                       keyDesc: "Meat",
-                      valueDesc: "hame \nturkey \npickle",
+                      valueDesc: "ham \nturkey \npickle",
                       height: 1.5,
                     ),
                     MakingKeyAndValue(
                       keyDesc: "vegetable",
-                      valueDesc:
-                          "onion \nlettunce\npickle\nturkey\hame\npickle",
+                      valueDesc: "onion \nlettuce\npickle\nturkey\ham\npickle",
                       height: 1.5,
                     ),
                     SizedBox(height: 20),
