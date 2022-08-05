@@ -31,7 +31,7 @@ class _SandwichOrderStatusPageState extends State<SandwichOrderStatusPage> {
   Widget build(BuildContext context) {
     Widget refreshWidget =
         Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      const Center(child: Text("Server is lost ...")),
+      const Center(child: Text("Service is lost ...")),
       TextButton(
           child: const Center(child: Text('Click to retry')),
           onPressed: () {
@@ -104,7 +104,7 @@ class _SandwichOrderStatusPageState extends State<SandwichOrderStatusPage> {
             _buildOrderItemWithText('Meat', order.meatName ?? ''),
             _buildOrderItemWithText('Cheese', order.cheeseName ?? ''),
             _buildOrderItemWithText(
-                'Veg',
+                'Vege',
                 order.vegetableNames == null
                     ? ''
                     : order.vegetableNames!.join(',')),
@@ -166,7 +166,8 @@ class _SandwichOrderStatusPageState extends State<SandwichOrderStatusPage> {
                 _finishOrder(order.orderNo!);
               },
               style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blueGrey)),
+                  backgroundColor:
+                      MaterialStateProperty.all(Color.fromRGBO(0, 28, 74, 1))),
             )
           ],
         ));

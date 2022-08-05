@@ -13,8 +13,6 @@ class _SandwichOrderListPageState extends State<SandwichOrderListPage> {
   Widget build(BuildContext context) {
     List tabs = ["To Do", 'Making', 'Finished'];
 
-    // final globalModel = Provider.of<GlobalModel>(context);
-    // String myId = globalModel.me.id;
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(

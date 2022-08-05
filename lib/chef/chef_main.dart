@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:foodfix/common/common_ui.dart';
 
-class ChefMainPage extends StatefulWidget {
-  const ChefMainPage({Key? key}) : super(key: key);
+class ChefMainPage2 extends StatefulWidget {
+  const ChefMainPage2({Key? key}) : super(key: key);
 
   @override
-  State<ChefMainPage> createState() => _ChefMainPageState();
+  State<ChefMainPage2> createState() => _ChefMainPage2State();
 }
 
-class _ChefMainPageState extends State<ChefMainPage> {
+class _ChefMainPage2State extends State<ChefMainPage2> {
   Widget buildTodayMenuItem(String title, String value) {
     var todayMenuStyle = Theme.of(context).textTheme.bodyLarge;
     double todayMenuItemTitleWidth = 150;
@@ -41,34 +41,37 @@ class _ChefMainPageState extends State<ChefMainPage> {
     Widget bodyWidget = Center(
       child: Padding(
         padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              "Today's Menu:",
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 12.0),
-            ),
-            buildTodayMenuItem('Morning', 'xxxxx'),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 12.0),
-            ),
-            buildTodayMenuItem('Lunch', 'Roast beef'),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 12.0),
-            ),
-            buildTodayMenuItem('Morning', 'Chinese noodle'),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 12.0),
-            ),
-            const Divider(height: 2.0),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 12.0),
-            ),
-            buildTodayMenuItem('Sandwich Orders', '138'),
-          ],
+        child: Container(
+          height: 100,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                "Today's Menu:",
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 12.0),
+              ),
+              buildTodayMenuItem('Morning', 'xxxxx'),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 12.0),
+              ),
+              buildTodayMenuItem('Lunch', 'Roast beef'),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 12.0),
+              ),
+              buildTodayMenuItem('Morning', 'Chinese noodle'),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 12.0),
+              ),
+              const Divider(height: 2.0),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 12.0),
+              ),
+              buildTodayMenuItem('Sandwich Orders', '138'),
+            ],
+          ),
         ),
       ),
     );
