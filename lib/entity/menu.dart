@@ -4,9 +4,5 @@ class Menu {
   String? dinner;
   String? date;
 
-  Menu(
-      {required this.breakfast,
-      required this.lunch,
-      required this.dinner,
-      this.date});
+  Menu({this.breakfast = '', this.lunch = '', this.dinner = '', this.date});
 }

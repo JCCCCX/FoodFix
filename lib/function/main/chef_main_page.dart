@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:foodfix/entity/menu.dart';
 import 'package:foodfix/function/global.dart';
@@ -16,6 +15,7 @@ class ChefMainPage extends StatefulWidget {
 
 class _ChefMainPageState extends State<ChefMainPage> {
   late Menu menu;
+  late int totalSandwichOrders;
 
   Widget _buildMenu() {
     return Container(
@@ -37,7 +37,7 @@ class _ChefMainPageState extends State<ChefMainPage> {
           const Padding(padding: EdgeInsets.only(bottom: 20)),
           Center(
             child: Text(
-              "162",
+              '$totalSandwichOrders',
               style: h1.copyWith(
                 fontSize: 44,
                 fontWeight: FontWeight.bold,
@@ -91,32 +91,10 @@ class _ChefMainPageState extends State<ChefMainPage> {
   }
 
   Future<bool> loadData() async {
-    String today = currentDateYmd();
-    // String today = '2022-08-10';
-    menu = await ServerAgent.getMenu(today);
-
-    return true;
-  }
-
-  Future<bool> loadTodayMenu() async {
     // String today = currentDateYmd();
     String today = '2022-08-10';
-    String webServerMenuToday = '${ServerAgent.webServerMenu}/$today';
-
-    logD('--------curl: $webServerMenuToday');
-    var response = await Dio().get(webServerMenuToday);
-    logD('--------response: $response');
-    if (response.statusCode == 200) {
-      var responseData = response.data;
-      String breakfast = responseData['breakfast'];
-      String lunch = responseData['lunch'];
-      String dinner = responseData['dinner'];
-      menu =
-          Menu(breakfast: breakfast, lunch: lunch, dinner: dinner, date: today);
-      return true;
-    } else {
-      logE('xxx response error: $response');
-      return false;
-    }
+    menu = await ServerAgent.getMenu(today);
+    totalSandwichOrders = await ServerAgent.getSandwichOrderTotalCount(today);
+    return true;
   }
 }

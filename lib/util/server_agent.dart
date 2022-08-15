@@ -35,50 +35,57 @@ class ServerAgent {
   }
 
   static Future<Menu> getMenu(String date) async {
-    Menu menu;
+    Menu menu = Menu();
     String webServerMenuToday = '${ServerAgent.webServerMenu}/$date';
-
     logD('--------curl: $webServerMenuToday');
+
     try {
       var response = await Dio().get(webServerMenuToday);
       logD('--------response: $response');
       if (response.statusCode == 200) {
         var responseData = response.data;
-        String breakfast = responseData['breakfast'];
-        String lunch = responseData['lunch'];
-        String dinner = responseData['dinner'];
+        String breakfast = responseData['breakfast'] ?? 'not published';
+        String lunch = responseData['lunch'] ?? 'not published';
+        String dinner = responseData['dinner'] ?? 'not published';
         menu = Menu(
             breakfast: breakfast, lunch: lunch, dinner: dinner, date: date);
       } else {
-        logE('xxx response error: $response');
-        menu = Menu(
-            breakfast: 'no data',
-            lunch: 'no data',
-            dinner: 'no data',
-            date: date);
+        logE('response error: $response');
       }
     } on DioError catch (e) {
-      logE('xxx response error: $e');
-      menu = Menu(breakfast: '', lunch: '', dinner: '', date: date);
+      logE('server access error: $e');
     }
-    // var response = await Dio().get(webServerMenuToday);
-    // logD('--------response: $response');
-    // if (response.statusCode == 200) {
-    //   var responseData = response.data;
-    //   String breakfast = responseData['breakfast'];
-    //   String lunch = responseData['lunch'];
-    //   String dinner = responseData['dinner'];
-    //   menu =
-    //       Menu(breakfast: breakfast, lunch: lunch, dinner: dinner, date: date);
-    // } else {
-    //   logE('xxx response error: $response');
-    //   menu = Menu(
-    //       breakfast: 'no data',
-    //       lunch: 'no data',
-    //       dinner: 'no data',
-    //       date: date);
-    // }
     return menu;
+  }
+
+  static Future<int> getSandwichOrderTotalCount(String date) async {
+    int total = 0;
+    String webServerOrderDaily =
+        '${ServerAgent.webServerOrderDaily}?&date=$date&page=0&size=5';
+    logD('--------curl: $webServerOrderDaily');
+
+    try {
+      var response = await Dio().get(webServerOrderDaily);
+      logD('--------response: $response');
+      if (response.statusCode == 200) {
+        var responseData = response.data;
+        List orderedList = responseData['Ordered'] ?? [];
+        List makingList = responseData['Making'] ?? [];
+        List completedList = responseData['Completed'] ?? [];
+        List canceledList = responseData['Canceled'] ?? [];
+        List takenList = responseData['Taken'] ?? [];
+        total = orderedList.length +
+            makingList.length +
+            completedList.length +
+            canceledList.length +
+            takenList.length;
+      } else {
+        logE('response error: $response');
+      }
+    } on DioError catch (e) {
+      logE('server access error: $e');
+    }
+    return total;
   }
 
   static Future<bool> finishOrder(postData) async {
