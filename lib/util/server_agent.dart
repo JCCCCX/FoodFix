@@ -1,17 +1,21 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:foodfix/entity/menu.dart';
 import 'package:foodfix/entity/sandwich_order.dart';
 import 'package:foodfix/entity/user.dart';
+import 'package:foodfix/util/date_util.dart';
+import 'package:foodfix/util/log_util.dart';
 
 class ServerAgent {
-  static const serverHost = '192.168.1.114';
-  static const serverPort = '8080';
-  static const serverContext = 'foodfix';
-  static const webServerBase = 'http://$serverHost:$serverPort/$serverContext';
-  static const webServerChefSpace = '$webServerBase/chef.space';
-  static const webServerStudentSpace = '$webServerBase/student.space';
-  static const imgUploadServer = '$webServerBase/img.upload';
-  static const imgDownloadServer = '$webServerBase/img.download';
-  static const websocketServer =
-      'ws://$serverHost:$serverPort/$serverContext/ws/notify/';
+  static const serverHost = 'app.foodfix.info';
+  static const apiVersion = 'v1/api';
+  static const webServerBase = 'http://$serverHost/$apiVersion';
+  static const webServerMenu = '$webServerBase/menu';
+  static const webServerOrder = '$webServerBase/order';
+  static const webServerOrderDaily = '$webServerBase/order/daily';
+  static const webServerOrderMe = '$webServerBase/order/me';
 
   static void initialize(String myUserId) {
     myUserId = myUserId;
@@ -30,6 +34,31 @@ class ServerAgent {
     }
   }
 
+  static Future<Menu> getMenu(String date) async {
+    Menu menu;
+    String webServerMenuToday = '${ServerAgent.webServerMenu}/$date';
+
+    logD('--------curl: $webServerMenuToday');
+    var response = await Dio().get(webServerMenuToday);
+    logD('--------response: $response');
+    if (response.statusCode == 200) {
+      var responseData = response.data;
+      String breakfast = responseData['breakfast'];
+      String lunch = responseData['lunch'];
+      String dinner = responseData['dinner'];
+      menu =
+          Menu(breakfast: breakfast, lunch: lunch, dinner: dinner, date: date);
+    } else {
+      logE('xxx response error: $response');
+      menu = Menu(
+          breakfast: 'no data',
+          lunch: 'no data',
+          dinner: 'no data',
+          date: date);
+    }
+    return menu;
+  }
+
   static Future<bool> finishOrder(postData) async {
     // update order status to database
 
@@ -42,23 +71,23 @@ class ServerAgent {
     List<SandwichOrder> todoList = <SandwichOrder>[];
 
     // var response = await Dio()
-    //     .post<String>(ServerAgent.webServerChefSpace, data: postData);
+    //     .get(ServerAgent.webServerOrderDaily, queryParameters: postData);
     // if (response.statusCode == 200) {
     //   var responseData = jsonDecode(response.data!);
     //   // print('---------------------responseData: $responseData');
     //   for (var obj in responseData) {
     //     // logD('---------------------obj: $obj');
     //     String orderId = obj['orderId'];
-    //     SandwichOrder order = SandwichOrder(
-    //         orderNo: 201,
-    //         studentId: 2022231,
-    //         studentName: 'Jason Cheng',
-    //         breadName: 'Grain wheat',
-    //         meatName: 'Ham turkey',
-    //         cheeseName: 'American style',
-    //         vegetableNames: ['onion', 'lettuce', 'pickle'],
-    //         sauceName: 'BBQ');
-    //     todoList.add(order);
+    //     // SandwichOrder order = SandwichOrder(
+    //     //     orderNo: 201,
+    //     //     studentId: 2022231,
+    //     //     studentName: 'Jason Cheng',
+    //     //     breadName: 'Grain wheat',
+    //     //     meatName: 'Ham turkey',
+    //     //     cheeseName: 'American style',
+    //     //     vegetableNames: ['onion', 'lettuce', 'pickle'],
+    //     //     sauceName: 'BBQ');
+    //     // todoList.add(order);
     //   }
     // }
 
