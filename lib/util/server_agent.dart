@@ -39,23 +39,45 @@ class ServerAgent {
     String webServerMenuToday = '${ServerAgent.webServerMenu}/$date';
 
     logD('--------curl: $webServerMenuToday');
-    var response = await Dio().get(webServerMenuToday);
-    logD('--------response: $response');
-    if (response.statusCode == 200) {
-      var responseData = response.data;
-      String breakfast = responseData['breakfast'];
-      String lunch = responseData['lunch'];
-      String dinner = responseData['dinner'];
-      menu =
-          Menu(breakfast: breakfast, lunch: lunch, dinner: dinner, date: date);
-    } else {
-      logE('xxx response error: $response');
-      menu = Menu(
-          breakfast: 'no data',
-          lunch: 'no data',
-          dinner: 'no data',
-          date: date);
+    try {
+      var response = await Dio().get(webServerMenuToday);
+      logD('--------response: $response');
+      if (response.statusCode == 200) {
+        var responseData = response.data;
+        String breakfast = responseData['breakfast'];
+        String lunch = responseData['lunch'];
+        String dinner = responseData['dinner'];
+        menu = Menu(
+            breakfast: breakfast, lunch: lunch, dinner: dinner, date: date);
+      } else {
+        logE('xxx response error: $response');
+        menu = Menu(
+            breakfast: 'no data',
+            lunch: 'no data',
+            dinner: 'no data',
+            date: date);
+      }
+    } on DioError catch (e) {
+      logE('xxx response error: $e');
+      menu = Menu(breakfast: '', lunch: '', dinner: '', date: date);
     }
+    // var response = await Dio().get(webServerMenuToday);
+    // logD('--------response: $response');
+    // if (response.statusCode == 200) {
+    //   var responseData = response.data;
+    //   String breakfast = responseData['breakfast'];
+    //   String lunch = responseData['lunch'];
+    //   String dinner = responseData['dinner'];
+    //   menu =
+    //       Menu(breakfast: breakfast, lunch: lunch, dinner: dinner, date: date);
+    // } else {
+    //   logE('xxx response error: $response');
+    //   menu = Menu(
+    //       breakfast: 'no data',
+    //       lunch: 'no data',
+    //       dinner: 'no data',
+    //       date: date);
+    // }
     return menu;
   }
 
