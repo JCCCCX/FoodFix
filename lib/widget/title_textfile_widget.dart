@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class TitleTextFieldWidget extends StatelessWidget {
   final String title;
   final String textFieldDesc;
+  final TextEditingController controller;
 
   const TitleTextFieldWidget({
     Key? key,
     required this.title,
     required this.textFieldDesc,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -33,6 +35,7 @@ class TitleTextFieldWidget extends StatelessWidget {
           SizedBox(
             height: 44,
             child: TextField(
+              controller: controller,
               decoration: InputDecoration(
                 hintText: textFieldDesc,
                 border: const UnderlineInputBorder(

@@ -12,6 +12,7 @@ class ServerAgent {
   static const serverHost = 'app.foodfix.info';
   static const apiVersion = 'v1/api';
   static const webServerBase = 'http://$serverHost/$apiVersion';
+  static const serverUrlLogin = '$webServerBase/login';
   static const webServerMenu = '$webServerBase/menu';
   static const webServerOrder = '$webServerBase/order';
   static const webServerOrderDaily = '$webServerBase/order/daily';
@@ -21,26 +22,50 @@ class ServerAgent {
     myUserId = myUserId;
   }
 
-  static Future<dynamic> signIn(String email, String password) async {
-    User me;
-    String errorMsg;
-
+  static Future<String> doLogin(String email, String password) async {
+    String sessionId = '';
+    String url = ServerAgent.serverUrlLogin;
+    var postData = {"email": email, "password": password};
     try {
-      me = User(id: '1234567890', name: 'test', roleId: '1', roleName: 'chef');
-      return me;
-    } on Exception catch (e) {
-      errorMsg = e.toString();
-      return errorMsg;
+      var response = await Dio().post(url, data: postData);
+      if (response.statusCode == 200) {
+        var responseData = response.data['data'];
+        sessionId = responseData['sessionId'];
+      } else {
+        logE('response error: $response');
+      }
+    } on DioError catch (e) {
+      logE('login error: $e');
     }
+    return sessionId;
+  }
+
+  static Future<String> checkLogin(String sessionId) async {
+    String role = 'unkown';
+    String url = ServerAgent.serverUrlLogin;
+    Map<String, dynamic> headers = {"X-Session-Id": sessionId};
+    try {
+      var response = await Dio().get(url, options: Options(headers: headers));
+      if (response.statusCode == 200) {
+        logD('--- response: $response');
+        var responseData = response.data['data'];
+        role = responseData['category'];
+      } else {
+        logE('response error: $response');
+      }
+    } on DioError catch (e) {
+      logE('server access error: $e');
+    }
+    return role;
   }
 
   static Future<Menu> getMenu(String date) async {
     Menu menu = Menu();
-    String webServerMenuToday = '${ServerAgent.webServerMenu}/$date';
-    logD('--------curl: $webServerMenuToday');
+    String url = '${ServerAgent.webServerMenu}/$date';
+    logD('--------curl: $url');
 
     try {
-      var response = await Dio().get(webServerMenuToday);
+      var response = await Dio().get(url);
       logD('--------response: $response');
       if (response.statusCode == 200) {
         var responseData = response.data;
@@ -60,12 +85,11 @@ class ServerAgent {
 
   static Future<int> getSandwichOrderTotalCount(String date) async {
     int total = 0;
-    String webServerOrderDaily =
-        '${ServerAgent.webServerOrderDaily}?&date=$date&page=0&size=5';
-    logD('--------curl: $webServerOrderDaily');
+    String url = '${ServerAgent.webServerOrderDaily}?&date=$date&page=0&size=5';
+    logD('--------curl: $url');
 
     try {
-      var response = await Dio().get(webServerOrderDaily);
+      var response = await Dio().get(url);
       logD('--------response: $response');
       if (response.statusCode == 200) {
         var responseData = response.data;
