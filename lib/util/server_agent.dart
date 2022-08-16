@@ -12,11 +12,12 @@ class ServerAgent {
   static const serverHost = 'app.foodfix.info';
   static const apiVersion = 'v1/api';
   static const webServerBase = 'http://$serverHost/$apiVersion';
-  static const serverUrlLogin = '$webServerBase/login';
-  static const webServerMenu = '$webServerBase/menu';
-  static const webServerOrder = '$webServerBase/order';
-  static const webServerOrderDaily = '$webServerBase/order/daily';
-  static const webServerOrderMe = '$webServerBase/order/me';
+  static const apiUrlLogin = '$webServerBase/login';
+  static const apiUrlMenu = '$webServerBase/menu';
+  static const apiUrlOrder = '$webServerBase/order';
+  static const apiUrlOrderDaily = '$webServerBase/order/daily';
+  static const apiUrlOrderMe = '$webServerBase/order/me';
+  static const apiUrlComponent = '$webServerBase/component';
 
   static void initialize(String myUserId) {
     myUserId = myUserId;
@@ -24,7 +25,7 @@ class ServerAgent {
 
   static Future<String> doLogin(String email, String password) async {
     String sessionId = '';
-    String url = ServerAgent.serverUrlLogin;
+    String url = ServerAgent.apiUrlLogin;
     var postData = {"email": email, "password": password};
     try {
       var response = await Dio().post(url, data: postData);
@@ -42,7 +43,7 @@ class ServerAgent {
 
   static Future<String> checkLogin(String sessionId) async {
     String role = 'unkown';
-    String url = ServerAgent.serverUrlLogin;
+    String url = ServerAgent.apiUrlLogin;
     Map<String, dynamic> headers = {"X-Session-Id": sessionId};
     try {
       var response = await Dio().get(url, options: Options(headers: headers));
@@ -61,7 +62,7 @@ class ServerAgent {
 
   static Future<Menu> getMenu(String date) async {
     Menu menu = Menu();
-    String url = '${ServerAgent.webServerMenu}/$date';
+    String url = '${ServerAgent.apiUrlMenu}/$date';
     logD('--------curl: $url');
 
     try {
@@ -85,7 +86,7 @@ class ServerAgent {
 
   static Future<int> getSandwichOrderTotalCount(String date) async {
     int total = 0;
-    String url = '${ServerAgent.webServerOrderDaily}?&date=$date&page=0&size=5';
+    String url = '${ServerAgent.apiUrlOrderDaily}?&date=$date&page=0&size=5';
     logD('--------curl: $url');
 
     try {
