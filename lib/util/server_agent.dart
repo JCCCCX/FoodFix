@@ -86,7 +86,7 @@ class ServerAgent {
 
   static Future<int> getSandwichOrderTotalCount(String date) async {
     int total = 0;
-    String url = '${ServerAgent.apiUrlOrderDaily}?&date=$date&page=0&size=5';
+    String url = '${ServerAgent.apiUrlOrderDaily}?&date=$date&page=0&size=5000';
     logD('--------curl: $url');
 
     try {
