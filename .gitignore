@@ -32,3 +32,6 @@ build/
 pubspec.lock
 analysis_options.yaml
 foodfix.iml
+.flutter-plugins
+.flutter-plugins-dependencies
+lib/generated_plugin_registrant.dart
