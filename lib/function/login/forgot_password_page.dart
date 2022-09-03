@@ -3,8 +3,7 @@ import 'package:foodfix/function/main/main_tab_page.dart';
 import 'package:foodfix/widget/title_textfile_widget.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
-  ForgotPasswordPage({Key? key}) : super(key: key);
-  final TextEditingController emailController = TextEditingController();
+  const ForgotPasswordPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +25,9 @@ class ForgotPasswordPage extends StatelessWidget {
                 ),
               ),
             ),
-            TitleTextFieldWidget(
+            const TitleTextFieldWidget(
               title: "E-mail",
               textFieldDesc: "Input you email",
-              controller: emailController,
             ),
             const SizedBox(height: 40),
             InkWell(

@@ -1,7 +1,8 @@
 class User {
-  String email;
-  String roleName;
-  String sessionId;
+  String? id;
+  String? name;
+  String? roleId;
+  String? roleName;
 
-  User({required this.email, required this.roleName, required this.sessionId});
+  User({required this.id, required this.name, this.roleId, this.roleName});
 }

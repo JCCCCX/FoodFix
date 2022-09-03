@@ -124,15 +124,16 @@ class SandItemWidget extends StatelessWidget {
     );
   }
 }
-
 class CheckBoxItem extends StatefulWidget {
   final String title;
   final ValueNotifier<bool> isCheck;
+  final bool hasHeight;
 
   const CheckBoxItem({
     Key? key,
     required this.title,
     required this.isCheck,
+    this.hasHeight = false,
   }) : super(key: key);
 
   @override
@@ -154,13 +155,16 @@ class _CheckBoxItemState extends State<CheckBoxItem> {
             width: 150,
           ),
         ),
-        Checkbox(
-            value: widget.isCheck.value,
-            onChanged: (t) {
-              setState(() {
-                widget.isCheck.value = !widget.isCheck.value;
-              });
-            }),
+        SizedBox(
+          height: widget.hasHeight ? 26 : 0,
+          child: Checkbox(
+              value: widget.isCheck.value,
+              onChanged: (t) {
+                setState(() {
+                  widget.isCheck.value = !widget.isCheck.value;
+                });
+              }),
+        ),
       ],
     );
   }
